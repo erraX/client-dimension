@@ -174,4 +174,15 @@
         $mi.querySelector('.page-x').innerHTML = evt.pageX;
         $mi.querySelector('.page-y').innerHTML = evt.pageY;
     });
+
+    window.addEventListener('resize', function (evt) {
+        var $wi = $('.window-indicator');
+    
+        $wi.querySelector('.client-width').innerHTML = document.documentElement.clientWidth;
+        $wi.querySelector('.client-height').innerHTML = document.documentElement.clientHeight;
+        $wi.querySelector('.inner-width').innerHTML = window.innerWidth;
+        $wi.querySelector('.inner-height').innerHTML = window.innerHeight;
+        $wi.querySelector('.outer-width').innerHTML = window.outerWidth;
+        $wi.querySelector('.outer-height').innerHTML = window.outerHeight;
+    });
 }();

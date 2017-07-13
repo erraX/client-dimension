@@ -69,5 +69,10 @@ li {
 
 .mouse-indicator {
   left: 420px;
-  background: rgb(106, 84, 148);
+  background: rgb(141, 141, 133);
+}
+
+.window-indicator {
+    left: 620px;
+    background: rgb(177, 137, 87);
 }
