@@ -155,14 +155,22 @@
         }
     };
 
-    var controller = new Controller($('.box'), $('.box-indicator'));
-    var containerController = new Controller(
-        $('.container'),
-        $('.container-indicator'),
-        { resizable: false }
-    );
+    function renderWindowIndicator(evt) {
+        var $wi = $('.window-indicator');
+    
+        $wi.querySelector('.client-width').innerHTML = document.documentElement.clientWidth;
+        $wi.querySelector('.client-height').innerHTML = document.documentElement.clientHeight;
+        $wi.querySelector('.inner-width').innerHTML = window.innerWidth;
+        $wi.querySelector('.inner-height').innerHTML = window.innerHeight;
+        $wi.querySelector('.outer-width').innerHTML = window.outerWidth;
+        $wi.querySelector('.outer-height').innerHTML = window.outerHeight;
+    }
 
-    document.addEventListener('mousemove', function (evt) {
+    function renderMouseIndicator(evt) {
+        if (!evt) {
+            return;
+        }
+
         var $mi = $('.mouse-indicator');
 
         $mi.querySelector('.screen-x').innerHTML = evt.screenX;
@@ -173,16 +181,18 @@
         $mi.querySelector('.client-y').innerHTML = evt.clientY;
         $mi.querySelector('.page-x').innerHTML = evt.pageX;
         $mi.querySelector('.page-y').innerHTML = evt.pageY;
-    });
+    }
 
-    window.addEventListener('resize', function (evt) {
-        var $wi = $('.window-indicator');
-    
-        $wi.querySelector('.client-width').innerHTML = document.documentElement.clientWidth;
-        $wi.querySelector('.client-height').innerHTML = document.documentElement.clientHeight;
-        $wi.querySelector('.inner-width').innerHTML = window.innerWidth;
-        $wi.querySelector('.inner-height').innerHTML = window.innerHeight;
-        $wi.querySelector('.outer-width').innerHTML = window.outerWidth;
-        $wi.querySelector('.outer-height').innerHTML = window.outerHeight;
-    });
+    var controller = new Controller($('.box'), $('.box-indicator'));
+    var containerController = new Controller(
+        $('.container'),
+        $('.container-indicator'),
+        { resizable: false }
+    );
+
+    renderWindowIndicator()
+    renderMouseIndicator()
+
+    document.addEventListener('mousemove', renderMouseIndicator);
+    window.addEventListener('resize', renderWindowIndicator);
 }();
